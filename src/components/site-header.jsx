@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
+import logoImg from "@/assets/logo.png";
 import logoAsset from "@/assets/nm-logo.png.asset.json";
 const links = [
   { to: "/", label: "Home" },
@@ -25,7 +26,7 @@ function SiteHeader({ transparent = false }) {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 group">
           <img
-            src={logoAsset.url}
+            src={logoImg || logoAsset.url}
             alt="NM Infrastructure — We Build Your Dreams"
             className="h-14 sm:h-16 md:h-20 w-auto object-contain my-1 transition-transform duration-300 group-hover:scale-105"
           />

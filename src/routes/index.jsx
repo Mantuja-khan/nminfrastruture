@@ -3,7 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowRight, HardHat } from "lucide-react";
 import heroImg from "@/assets/hero-construction.jpg";
-import heroVideo from "@/assets/hero-construction.mp4.asset.json";
+import heroVideoMp4 from "@/assets/hero-construction.mp4";
+import heroVideoAsset from "@/assets/hero-construction.mp4.asset.json";
 import video1 from "@/assets/video1.mp4";
 import teamWorkers from "@/assets/team-workers.jpg";
 import teamEngineers from "@/assets/team-engineers.jpg";
@@ -40,7 +41,7 @@ function Index() {
     }}
   >
           <video
-      src={heroVideo?.url || video1}
+      src={heroVideoMp4 || heroVideoAsset?.url || video1}
       poster={heroImg}
       autoPlay
       muted

@@ -19,7 +19,7 @@ function SiteFooter() {
       <div className="relative max-w-7xl mx-auto px-6 pt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
         <div className="lg:pr-4">
           <div className="flex items-center gap-2 mb-5">
-            <img src={logoAsset.url} alt="NM Infrastructure" className="h-20 md:h-24 w-auto" />
+            <img src={logoAsset.url} alt="NM Infrastructure — We Build Your Dreams" className="h-16 md:h-20 w-auto object-contain" />
           </div>
           <p className="text-sm leading-relaxed mb-5">
             Founded 2024 by Arshad Khan — building residential, commercial and industrial projects with quality craftsmanship and reliable delivery.

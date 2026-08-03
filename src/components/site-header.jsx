@@ -23,11 +23,11 @@ function SiteHeader({ transparent = false }) {
     className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${solid ? "bg-[var(--dark)] shadow-lg py-3" : "bg-transparent py-5"}`}
   >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2 group h-14 md:h-16">
+        <Link to="/" className="flex items-center gap-2 group">
           <img
             src={logoAsset.url}
-            alt="NM Infrastructure"
-            className="h-20 md:h-24 w-auto -my-3 md:-my-4 object-contain"
+            alt="NM Infrastructure — We Build Your Dreams"
+            className="h-14 sm:h-16 md:h-20 w-auto object-contain my-1 transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
 

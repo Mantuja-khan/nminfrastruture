@@ -32,11 +32,41 @@ if (fs.existsSync(publicDir)) {
   fs.cpSync(publicDir, distDir, { recursive: true });
 }
 
-// Copy root index.html to dist/index.html if not already present
+// Locate compiled production asset files in dist/assets
+const assetsDir = path.join(distDir, 'assets');
+let mainJsFile = '';
+let mainCssFile = '';
+
+if (fs.existsSync(assetsDir)) {
+  const files = fs.readdirSync(assetsDir);
+  mainJsFile = files.find(f => f.startsWith('index-') && f.endsWith('.js')) || '';
+  mainCssFile = files.find(f => f.startsWith('styles-') && f.endsWith('.css')) || '';
+}
+
+// Prepare production dist/index.html with production asset references
 const rootIndexHtml = path.join(rootDir, 'index.html');
 const distIndexHtml = path.join(distDir, 'index.html');
-if (fs.existsSync(rootIndexHtml) && !fs.existsSync(distIndexHtml)) {
-  fs.cpSync(rootIndexHtml, distIndexHtml);
+
+if (fs.existsSync(rootIndexHtml)) {
+  let htmlContent = fs.readFileSync(rootIndexHtml, 'utf8');
+
+  // Replace dev script tag with production bundled JS script tag
+  if (mainJsFile) {
+    htmlContent = htmlContent.replace(
+      /<script type="module" src="\/src\/start\.js"><\/script>/,
+      `<script type="module" src="/assets/${mainJsFile}"></script>`
+    );
+  }
+
+  // Inject production CSS link tag into <head>
+  if (mainCssFile && !htmlContent.includes(mainCssFile)) {
+    htmlContent = htmlContent.replace(
+      '</head>',
+      `  <link rel="stylesheet" href="/assets/${mainCssFile}" />\n</head>`
+    );
+  }
+
+  fs.writeFileSync(distIndexHtml, htmlContent, 'utf8');
 }
 
 // Create a top-level dist/index.mjs helper forwarding to server entry point
@@ -48,4 +78,4 @@ if (fs.existsSync(serverEntry)) {
   );
 }
 
-console.log('Successfully generated dist/ folder!');
+console.log('Successfully generated production-ready dist/ folder!');

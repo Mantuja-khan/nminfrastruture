@@ -1,118 +1,281 @@
-import p1 from "@/assets/project-1.jpg";
-import p2 from "@/assets/project-2.jpg";
-import p3 from "@/assets/project-3.jpg";
-import p4 from "@/assets/project-4.jpg";
-import p5 from "@/assets/project-5.jpg";
-import p6 from "@/assets/project-6.jpg";
+// Dehradun Reliance Site Videos
+import dehradunReliance from "@/assets/dehradun_reliance.mp4";
+import dehradunReliance1 from "@/assets/dehradun_reliance1.mp4";
+import dehradunReliance2 from "@/assets/dehradun_reliance2.mp4";
+import dehradunReliance3 from "@/assets/dehradun_reliance3.mp4";
+import dehradunReliance4 from "@/assets/dehradun_reliance4.mp4";
+import dehradunReliance5 from "@/assets/dehradun_reliance5.mp4";
+import dehradunReliance6 from "@/assets/dehradun_reliance6.mp4";
+import dehradunReliance7 from "@/assets/dehradun_reliance7.mp4";
+import dehradunReliance8 from "@/assets/dehradun_reliance8.mp4";
 
-import video1 from "@/assets/video1.mp4";
-import video2 from "@/assets/video2.mp4";
-import video3 from "@/assets/video3.mp4";
-import video4 from "@/assets/video4.mp4";
-import video5 from "@/assets/video6.mp4";
-import video6 from "@/assets/video6.mp4";
-import video7 from "@/assets/video7.mp4";
-import video8 from "@/assets/video8.mp4";
-import video9 from "@/assets/video9.mp4";
+// Additional Project Videos from assets/videos
+import gujratRelianceSiteVideo from "@/assets/videos/gujrat_reliance_site.mp4";
+import gujratPlantStructureVideo from "@/assets/videos/gujrat_plant_structure.mp4";
+import gujratMachineFoundationVideo from "@/assets/videos/gujrat_machine_foundation.mp4";
+import bikanerSolarPlantVideo from "@/assets/videos/bikaner_solar_plant.mp4";
+import bikanerSolarPlant1Video from "@/assets/videos/bikaner_solar_plant1.mp4";
+import epoxyFlorinDharuheraVideo from "@/assets/videos/epoxy_florin_dharuhera.mp4";
+import dharuheraMachineMeasurementVideo from "@/assets/videos/dharuhera_machine_shifting_measurement.mp4";
+import fabricationWorkDharuheraVideo from "@/assets/videos/fabrication_work_dharuhera.mp4";
+import fabricationWorkKhuskheraVideo from "@/assets/videos/fabrication_work_khuskhera.mp4";
+import kotaKhanpurVideo from "@/assets/videos/kota_khanpur_rajasthan.mp4";
+import bilaspurFlipkartVideo from "@/assets/bilaspur_flipkart.mp4";
+import machineInstallDharuhera1 from "@/assets/videos/machine_installation_dharuhera1.mp4";
+import machineInstallDharuhera2 from "@/assets/videos/machine_installation_dharuhera2.mp4";
 
-export const PROJECTS = [
+// Project Photos from assets/videos
+import gujratSite1 from "@/assets/videos/gujrat_reliance_site1.jpeg";
+import gujratSite2 from "@/assets/videos/gujrat_reliance_site2.jpeg";
+import gujratSite3 from "@/assets/videos/gujrat_reliance_site3.jpeg";
+import gujratSite4 from "@/assets/videos/gujrat_reliance_site4.jpeg";
+import gujratSite5 from "@/assets/videos/gujrat_reliance_site5.jpeg";
+import gujratSite6 from "@/assets/videos/gujrat_reliance_site6.jpeg";
+import gujratSite7 from "@/assets/videos/gujrat_reliance_site7.jpeg";
+import gujratSite8 from "@/assets/videos/gujrat_reliance_site8.jpeg";
+import gujratSite9 from "@/assets/videos/gujrat_reliance_site9.jpeg";
+import gujratSite10 from "@/assets/videos/gujrat_reliance_site10.jpeg";
+
+import sonipatPlant1 from "@/assets/videos/Plant and aluminium_sonipat.jpeg";
+import sonipatPlant2 from "@/assets/videos/Plant and aluminium_sonipat2.jpeg";
+import sonipatPlant3 from "@/assets/videos/Plant and aluminium_sonipat3.jpeg";
+import sonipatPlant4 from "@/assets/videos/Plant and aluminium_sonipat4.jpeg";
+import sonipatPlant5 from "@/assets/videos/Plant and aluminium_sonipat5.jpeg";
+
+import earthingInstallation from "@/assets/videos/earthing_installation.jpeg";
+
+export const VIDEO_PROJECTS = [
   {
-    id: "skyline-residences",
-    title: "Skyline Luxury Residences",
-    tag: "Residential",
-    location: "Mumbai, Maharashtra",
-    video: video1,
-    img: p1,
-    description: "Multi-story luxury residential tower with advanced structural framing, foundation pile works, and smart home MEP integrations.",
-    year: "2025",
-    scope: "Civil Construction & Interior Engineering"
+    id: "dehradun-reliance",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance
   },
   {
-    id: "horizon-corporate-park",
-    title: "Horizon Commercial IT Park",
-    tag: "Commercial",
-    location: "Bengaluru, Karnataka",
-    video: video2,
-    img: p2,
-    description: "State-of-the-art corporate technology park featuring high-grade structural glazing, open steel spans, and energy-efficient HVAC.",
-    year: "2025",
-    scope: "Structural Engineering & Exterior Glazing"
+    id: "dehradun-reliance-1",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance1
   },
   {
-    id: "vector-industrial-hub",
-    title: "Vector Heavy Industrial Hub",
-    tag: "Industrial",
-    location: "Pune, Maharashtra",
-    video: video3,
-    img: p3,
-    description: "Large-capacity manufacturing plant equipped with heavy-duty structural steel fabrication, crane gantries, and industrial flooring.",
-    year: "2024",
-    scope: "Heavy Steel Fabrication & Civil Infrastructure"
+    id: "dehradun-reliance-2",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance2
   },
   {
-    id: "azure-coastal-villa",
-    title: "Azure Luxury Villa & Estates",
-    tag: "Residential",
-    location: "Goa",
-    video: video4,
-    img: p4,
-    description: "High-end bespoke coastal villa development crafted with reinforced concrete framing and custom interior finishes.",
-    year: "2025",
-    scope: "Full-Turnkey Construction & Landscaping"
+    id: "dehradun-reliance-3",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance3
   },
   {
-    id: "meridian-shopping-center",
-    title: "Meridian Commercial Plaza",
-    tag: "Commercial",
-    location: "Hyderabad, Telangana",
-    video: video5,
-    img: p5,
-    description: "Modern multi-level retail destination featuring expansive atrium steelwork, high-traffic flooring, and MEP utility integration.",
-    year: "2024",
-    scope: "Commercial Development & Structural Steel"
+    id: "dehradun-reliance-4",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance4
   },
   {
-    id: "coastal-flyover-bridge",
-    title: "Coastal Access Arterial Flyover",
-    tag: "Infrastructure",
-    location: "Chennai, Tamil Nadu",
-    video: video6,
-    img: p6,
-    description: "Heavy civil infrastructure flyover project with prestressed concrete girders, roadway paving, and structural safety barriers.",
-    year: "2024",
-    scope: "Heavy Civil & Infrastructure Engineering"
+    id: "dehradun-reliance-5",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance5
   },
   {
-    id: "apex-towers-complex",
-    title: "Apex High-Rise Towers",
-    tag: "Residential",
-    location: "Delhi NCR",
-    video: video7,
-    img: p1,
-    description: "Premium urban apartment complex undergoing core structural casting, reinforced column matrix, and utility piping.",
-    year: "2025",
-    scope: "RCC Structure & Utility Infrastructure"
+    id: "dehradun-reliance-6",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance6
   },
   {
-    id: "metro-freight-logistics",
-    title: "Metro Freight & Logistics Depot",
-    tag: "Industrial",
-    location: "Ahmedabad, Gujarat",
-    video: video8,
-    img: p2,
-    description: "Sprawling automated logistics warehouse featuring wide-span steel trusses, insulated roofing, and heavy transit bays.",
-    year: "2025",
-    scope: "Industrial Warehouse Construction & MEP"
+    id: "dehradun-reliance-7",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance7
   },
   {
-    id: "grand-civic-convention",
-    title: "Grand Civic Convention Center",
-    tag: "Commercial",
-    location: "Kolkata, West Bengal",
-    video: video9,
-    img: p3,
-    description: "Iconic civic assembly and convention hall designed with acoustic ceiling trusses, curtain walls, and central MEP plant.",
-    year: "2024",
-    scope: "Architectural Civil Construction & Interiors"
+    id: "dehradun-reliance-8",
+    title: "Dehradun Reliance",
+    type: "video",
+    video: dehradunReliance8
+  },
+  {
+    id: "gujrat-reliance-site-video",
+    title: "Gujrat Reliance Site",
+    type: "video",
+    video: gujratRelianceSiteVideo
+  },
+  {
+    id: "gujrat-plant-structure-video",
+    title: "Gujrat Plant Structure",
+    type: "video",
+    video: gujratPlantStructureVideo
+  },
+  {
+    id: "gujrat-machine-foundation-video",
+    title: "Gujrat Machine Foundation",
+    type: "video",
+    video: gujratMachineFoundationVideo
+  },
+  {
+    id: "bikaner-solar-plant-video",
+    title: "Bikaner Solar Plant",
+    type: "video",
+    video: bikanerSolarPlantVideo
+  },
+  {
+    id: "bikaner-solar-plant-1-video",
+    title: "Bikaner Solar Plant",
+    type: "video",
+    video: bikanerSolarPlant1Video
+  },
+  {
+    id: "epoxy-florin-dharuhera-video",
+    title: "Epoxy Florin Dharuhera",
+    type: "video",
+    video: epoxyFlorinDharuheraVideo
+  },
+  {
+    id: "dharuhera-machine-shifting-video",
+    title: "Dharuhera Machine Shifting Measurement",
+    type: "video",
+    video: dharuheraMachineMeasurementVideo
+  },
+  {
+    id: "machine-install-dharuhera-1",
+    title: "Machine Installation Dharuhera",
+    type: "video",
+    video: machineInstallDharuhera1
+  },
+  {
+    id: "machine-install-dharuhera-2",
+    title: "Machine Installation Dharuhera",
+    type: "video",
+    video: machineInstallDharuhera2
+  },
+  {
+    id: "fabrication-work-dharuhera-video",
+    title: "Fabrication Work Dharuhera",
+    type: "video",
+    video: fabricationWorkDharuheraVideo
+  },
+  {
+    id: "fabrication-work-khuskhera-video",
+    title: "Fabrication Work Khuskhera",
+    type: "video",
+    video: fabricationWorkKhuskheraVideo
+  },
+  {
+    id: "kota-khanpur-video",
+    title: "Kota Khanpur Rajasthan",
+    type: "video",
+    video: kotaKhanpurVideo
+  },
+  {
+    id: "bilaspur-flipkart-video",
+    title: "Bilaspur Flipkart",
+    type: "video",
+    video: bilaspurFlipkartVideo
   }
 ];
+
+export const PHOTO_PROJECTS = [
+  {
+    id: "gujrat-site-photo-1",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite1
+  },
+  {
+    id: "gujrat-site-photo-2",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite2
+  },
+  {
+    id: "gujrat-site-photo-3",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite3
+  },
+  {
+    id: "gujrat-site-photo-4",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite4
+  },
+  {
+    id: "gujrat-site-photo-5",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite5
+  },
+  {
+    id: "gujrat-site-photo-6",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite6
+  },
+  {
+    id: "gujrat-site-photo-7",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite7
+  },
+  {
+    id: "gujrat-site-photo-8",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite8
+  },
+  {
+    id: "gujrat-site-photo-9",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite9
+  },
+  {
+    id: "gujrat-site-photo-10",
+    title: "Gujrat Reliance Site",
+    type: "photo",
+    img: gujratSite10
+  },
+  {
+    id: "sonipat-plant-photo-1",
+    title: "Plant and Aluminium Sonipat",
+    type: "photo",
+    img: sonipatPlant1
+  },
+  {
+    id: "sonipat-plant-photo-2",
+    title: "Plant and Aluminium Sonipat",
+    type: "photo",
+    img: sonipatPlant2
+  },
+  {
+    id: "sonipat-plant-photo-3",
+    title: "Plant and Aluminium Sonipat",
+    type: "photo",
+    img: sonipatPlant3
+  },
+  {
+    id: "sonipat-plant-photo-4",
+    title: "Plant and Aluminium Sonipat",
+    type: "photo",
+    img: sonipatPlant4
+  },
+  {
+    id: "sonipat-plant-photo-5",
+    title: "Plant and Aluminium Sonipat",
+    type: "photo",
+    img: sonipatPlant5
+  },
+  {
+    id: "earthing-installation-photo",
+    title: "Earthing Installation",
+    type: "photo",
+    img: earthingInstallation
+  }
+];
+
+export const PROJECTS = [...VIDEO_PROJECTS, ...PHOTO_PROJECTS];

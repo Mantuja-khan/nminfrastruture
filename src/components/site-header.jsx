@@ -21,14 +21,14 @@ function SiteHeader({ transparent = false }) {
   }, []);
   const solid = scrolled || !transparent;
   return <header
-    className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${solid ? "bg-[var(--dark)] shadow-lg py-3" : "bg-transparent py-5"}`}
+    className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${solid ? "bg-[var(--dark)] shadow-lg py-1.5" : "bg-transparent py-2.5"}`}
   >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 group">
           <img
             src={logoImg || logoAsset.url}
             alt="NM Infrastructure — We Build Your Dreams"
-            className="h-14 sm:h-16 md:h-20 w-auto object-contain my-1 transition-transform duration-300 group-hover:scale-105"
+            className="h-16 sm:h-20 md:h-24 w-auto object-contain -my-2.5 sm:-my-3.5 transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
 
@@ -45,11 +45,11 @@ function SiteHeader({ transparent = false }) {
         </nav>
 
         <a
-    href="tel:+919876543210"
+    href="tel:+919887211937"
     className="hidden lg:flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 font-display font-bold hover:bg-white transition-colors"
   >
           <Phone className="w-4 h-4" />
-          <span>+91 98765 43210</span>
+          <span>+91 9887211937</span>
         </a>
 
         <button
@@ -74,10 +74,10 @@ function SiteHeader({ transparent = false }) {
                 {l.label}
               </Link>)}
             <a
-    href="tel:+919876543210"
+    href="tel:+919887211937"
     className="mt-2 inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-3 font-display font-bold w-fit"
   >
-              <Phone className="w-4 h-4" /> +91 98765 43210
+              <Phone className="w-4 h-4" /> +91 9887211937
             </a>
           </div>
         </div>}

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { X } from "lucide-react";
+import { X, Video } from "lucide-react";
 
 export function VideoModal({ project, onClose }) {
   const videoRef = useRef(null);
@@ -20,26 +20,34 @@ export function VideoModal({ project, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-black/95 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md animate-fade-in"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-white/20"
+        className="relative w-full max-w-4xl bg-[var(--dark)] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-white/20 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button Header */}
-        <div className="absolute top-4 right-4 z-20">
+        {/* Header Bar */}
+        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/40">
+          <div>
+            <span className="inline-flex items-center gap-1.5 text-xs font-display font-bold text-primary uppercase tracking-wider mb-1">
+              <Video className="w-3.5 h-3.5" /> Video Showcase
+            </span>
+            <h3 className="font-display font-extrabold text-white text-base sm:text-lg">
+              {project.title}
+            </h3>
+          </div>
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="p-2.5 rounded-full bg-black/70 hover:bg-primary hover:text-black text-white backdrop-blur-md transition-all duration-200 shadow-lg border border-white/20"
+            className="p-2 rounded-full bg-white/10 hover:bg-primary hover:text-black text-white transition-all duration-200"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* PURE FULL VIDEO DISPLAY */}
-        <div className="relative w-full aspect-video bg-black flex items-center justify-center">
+        {/* FULL VIDEO DISPLAY */}
+        <div className="relative w-full aspect-video max-h-[75vh] bg-black flex items-center justify-center">
           <video
             ref={videoRef}
             src={project.video}
@@ -48,7 +56,7 @@ export function VideoModal({ project, onClose }) {
             playsInline
             controls
             loop
-            className="w-full h-full object-contain"
+            className="w-full h-full max-h-[75vh] object-contain"
           />
         </div>
       </div>

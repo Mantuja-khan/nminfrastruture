@@ -5,7 +5,6 @@ import { ArrowRight, HardHat } from "lucide-react";
 import heroImg from "@/assets/hero-construction.jpg";
 import heroVideoMp4 from "@/assets/hero-construction.mp4";
 import heroVideoAsset from "@/assets/hero-construction.mp4.asset.json";
-import video1 from "@/assets/video1.mp4";
 import teamWorkers from "@/assets/team-workers.jpg";
 import teamEngineers from "@/assets/team-engineers.jpg";
 import { useReveal } from "@/hooks/use-reveal";
@@ -13,6 +12,7 @@ import { SERVICES } from "@/lib/services-data";
 import { PROJECTS } from "@/lib/projects-data";
 import { ProjectCard } from "@/components/project-card";
 import { VideoModal } from "@/components/video-modal";
+import { ImageModal } from "@/components/image-modal";
 
 const Route = createFileRoute("/")({
   component: Index
@@ -35,33 +35,26 @@ function Index() {
   }
       <section id="home" className="relative min-h-[640px] h-[100svh] sm:min-h-[720px] overflow-hidden bg-[var(--dark)]">
         <div
-    className="absolute inset-0 will-change-transform"
-    style={{
-      transform: `translate3d(0, ${scrollY * 0.4}px, 0) scale(${1 + scrollY * 3e-4})`
-    }}
-  >
+          className="absolute inset-0 will-change-transform cursor-pointer"
+          style={{
+            transform: `translate3d(0, ${scrollY * 0.4}px, 0) scale(${1 + scrollY * 3e-4})`
+          }}
+          onClick={() => setSelectedProject({ id: "hero-video", title: "NM Infrastructure — Landmark Construction", video: heroVideoMp4 || heroVideoAsset?.url, img: heroImg, type: "video" })}
+          title="Click to view video"
+        >
           <video
-      src={heroVideoMp4 || heroVideoAsset?.url || video1}
-      poster={heroImg}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      aria-label="Building under construction"
-      className="w-full h-full object-cover"
-    />
+            src={heroVideoMp4 || heroVideoAsset?.url}
+            poster={heroImg}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-label="Building under construction"
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/20" />
         </div>
-
-        <div
-    className="pointer-events-none absolute -right-32 top-1/4 w-[420px] h-[420px] sm:w-[520px] sm:h-[520px] bg-primary/20 sm:bg-primary/90 skew-y-6 z-10"
-    style={{ transform: `translate3d(0, ${scrollY * -0.15}px, 0) skewY(-8deg)` }}
-  />
-        <div
-    className="pointer-events-none absolute right-6 bottom-16 sm:right-10 sm:bottom-20 w-24 h-24 sm:w-40 sm:h-40 bg-accent/25 sm:bg-accent/80 z-10"
-    style={{ transform: `translate3d(0, ${scrollY * -0.25}px, 0) rotate(15deg)` }}
-  />
 
         <div
     className="relative z-20 max-w-7xl mx-auto h-full flex items-center px-4 sm:px-6"
@@ -204,17 +197,17 @@ function Index() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-10 h-[2px] bg-primary" />
-                <span className="text-primary font-display font-bold tracking-[0.3em] uppercase text-sm">Featured Video Showcase</span>
+                <span className="text-primary font-display font-bold tracking-[0.3em] uppercase text-sm">Featured Project Showcase</span>
               </div>
               <h2 className="font-display font-black text-4xl md:text-5xl leading-tight max-w-xl">
                 Recent projects we're <span className="text-primary">proud of</span>
               </h2>
               <p className="text-muted-foreground text-sm mt-3 max-w-lg">
-                Explore our live video showcases featuring civil engineering, structural steel, and infrastructure developments.
+                Explore our live video showcases and photo galleries featuring civil engineering, structural steel, and infrastructure developments.
               </p>
             </div>
             <Link to="/projects" className="inline-flex items-center gap-2 font-display font-bold uppercase tracking-widest text-sm hover:text-primary transition">
-              View All 9 Projects <ArrowRight className="w-4 h-4" />
+              View All Projects ({PROJECTS.length}) <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -228,8 +221,15 @@ function Index() {
             ))}
           </div>
 
-          {selectedProject && (
+          {selectedProject?.type === "video" && (
             <VideoModal
+              project={selectedProject}
+              onClose={() => setSelectedProject(null)}
+            />
+          )}
+
+          {selectedProject?.type === "photo" && (
+            <ImageModal
               project={selectedProject}
               onClose={() => setSelectedProject(null)}
             />

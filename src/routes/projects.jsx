@@ -1,19 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, Video } from "lucide-react";
+import { ArrowRight, Video, Image as ImageIcon, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { useReveal } from "@/hooks/use-reveal";
-import { PROJECTS } from "@/lib/projects-data";
+import { VIDEO_PROJECTS, PHOTO_PROJECTS } from "@/lib/projects-data";
 import { ProjectCard } from "@/components/project-card";
 import { VideoModal } from "@/components/video-modal";
+import { ImageModal } from "@/components/image-modal";
 
 const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
       { title: "Projects — NM Infrastructure" },
-      { name: "description", content: "Explore high-definition video showcases of 9 key landmark projects by NM Infrastructure." },
-      { property: "og:title", content: "Video Projects Portfolio — NM Infrastructure" },
-      { property: "og:description", content: "A high-definition video portfolio of landmark projects." }
+      { name: "description", content: "Explore live video showcases and high-resolution photo galleries of landmark infrastructure developments by NM Infrastructure." },
+      { property: "og:title", content: "Video & Photo Projects Portfolio — NM Infrastructure" },
+      { property: "og:description", content: "A high-definition video and photo portfolio of industrial, commercial, and residential projects." }
     ]
   }),
   component: ProjectsPage
@@ -21,7 +22,8 @@ const Route = createFileRoute("/projects")({
 
 function ProjectsPage() {
   useReveal();
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeTab, setActiveTab] = useState("all"); // 'all' | 'videos' | 'photos'
+  const [selectedMedia, setSelectedMedia] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,63 +32,129 @@ function ProjectsPage() {
   return (
     <>
       <PageHero
-        title="Video Projects Showcase"
-        subtitle="Explore our live video showcases of landmark developments."
+        title="Project Showcase & Gallery"
+        subtitle="Explore our live video showcases and high-definition photo documentation of landmark infrastructure developments."
         breadcrumbs={[{ label: "Home", to: "/" }, { label: "Projects" }]}
       />
 
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-10 reveal">
-            <span className="w-10 h-[2px] bg-primary" />
-            <span className="text-primary font-display font-bold tracking-[0.25em] uppercase text-xs sm:text-sm flex items-center gap-2">
-              <Video className="w-4 h-4 text-primary" />
-              9 Live Video Showcases
-            </span>
+          {/* Header & Filter Controls */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-10 h-[2px] bg-primary" />
+                <span className="text-primary font-display font-bold tracking-[0.25em] uppercase text-xs sm:text-sm flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  Portfolio Showcase
+                </span>
+              </div>
+              <h2 className="font-display font-black text-3xl sm:text-4xl text-foreground">
+                Featured <span className="text-primary">Developments</span>
+              </h2>
+            </div>
+
+            {/* Filter Tabs */}
+            <div className="inline-flex p-1.5 bg-muted rounded-xl border border-border">
+              <button
+                onClick={() => setActiveTab("all")}
+                className={`px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
+                  activeTab === "all"
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                All ({VIDEO_PROJECTS.length + PHOTO_PROJECTS.length})
+              </button>
+              <button
+                onClick={() => setActiveTab("videos")}
+                className={`px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm font-bold uppercase tracking-wider transition-all flex items-center gap-2 ${
+                  activeTab === "videos"
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Video className="w-4 h-4" />
+                Videos ({VIDEO_PROJECTS.length})
+              </button>
+              <button
+                onClick={() => setActiveTab("photos")}
+                className={`px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm font-bold uppercase tracking-wider transition-all flex items-center gap-2 ${
+                  activeTab === "photos"
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <ImageIcon className="w-4 h-4" />
+                Photos ({PHOTO_PROJECTS.length})
+              </button>
+            </div>
           </div>
 
-          {/* Pure Video Grid — All text/location content removed */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.map((p, i) => (
-              <ProjectCard
-                key={p.id}
-                project={p}
-                onOpenModal={(proj) => setSelectedProject(proj)}
-                delay={i % 3 * 100}
-              />
-            ))}
-          </div>
+          {/* SECTION 1: VIDEO PROJECTS SHOWCASE */}
+          {(activeTab === "all" || activeTab === "videos") && (
+            <div className="mb-20">
+              <div className="flex items-center gap-3 mb-8 reveal">
+                <span className="w-8 h-[2px] bg-primary" />
+                <h3 className="font-display font-extrabold text-xl sm:text-2xl text-foreground uppercase tracking-wide flex items-center gap-2">
+                  <Video className="w-5 h-5 text-primary" />
+                  Video Project Showcases ({VIDEO_PROJECTS.length})
+                </h3>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {VIDEO_PROJECTS.map((p, i) => (
+                  <ProjectCard
+                    key={p.id}
+                    project={p}
+                    onOpenModal={(proj) => setSelectedMedia(proj)}
+                    delay={(i % 3) * 100}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* SECTION 2: PHOTO PROJECTS GALLERY */}
+          {(activeTab === "all" || activeTab === "photos") && (
+            <div>
+              <div className="flex items-center gap-3 mb-8 reveal">
+                <span className="w-8 h-[2px] bg-accent" />
+                <h3 className="font-display font-extrabold text-xl sm:text-2xl text-foreground uppercase tracking-wide flex items-center gap-2">
+                  <ImageIcon className="w-5 h-5 text-accent" />
+                  Photo Project Gallery ({PHOTO_PROJECTS.length})
+                </h3>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {PHOTO_PROJECTS.map((p, i) => (
+                  <ProjectCard
+                    key={p.id}
+                    project={p}
+                    onOpenModal={(proj) => setSelectedMedia(proj)}
+                    delay={(i % 3) * 100}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Pure Video Lightbox Modal */}
-      {selectedProject && (
+      {/* Lightbox Modals */}
+      {selectedMedia?.type === "video" && (
         <VideoModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
+          project={selectedMedia}
+          onClose={() => setSelectedMedia(null)}
         />
       )}
 
-      {/* Call to Action */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div>
-            <h3 className="font-display font-black text-[var(--dark)] text-3xl md:text-4xl mb-2">
-              Have a structural project in mind?
-            </h3>
-            <p className="text-[var(--dark)]/80 text-sm font-medium">
-              We bring technical expertise and craftsmanship to every build site.
-            </p>
-          </div>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-[var(--dark)] text-white font-display font-bold uppercase tracking-wider px-8 py-4 hover:bg-white hover:text-[var(--dark)] transition shadow-xl shrink-0"
-          >
-            Start Consulting <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+      {selectedMedia?.type === "photo" && (
+        <ImageModal
+          project={selectedMedia}
+          onClose={() => setSelectedMedia(null)}
+        />
+      )}
     </>
   );
 }

@@ -11,14 +11,19 @@ function SiteFooter() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6 py-10 border-b border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-        <h3 className="font-display text-2xl md:text-3xl font-bold text-white text-center md:text-left leading-tight">
-          Ready to build your <span className="text-primary">dream project</span>?
-        </h3>
+        <div>
+          <h3 className="font-display text-2xl md:text-3xl font-bold text-white text-center md:text-left leading-tight">
+            Ready to build your <span className="text-primary">next facility</span>?
+          </h3>
+          <p className="text-slate-400 text-sm mt-1 text-center md:text-left">
+            Connect with our engineering & logistics infrastructure specialists for an instant quote.
+          </p>
+        </div>
         <Link
           to="/contact"
-          className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-7 py-3.5 uppercase tracking-widest text-xs hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center gap-2 bg-primary hover:bg-red-700 text-white font-sans font-semibold px-7 py-3.5 rounded-full text-xs uppercase tracking-wider shadow-lg transition-all"
         >
-          Start a Conversation <ArrowRight className="w-4 h-4" />
+          Request an Estimate <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
 

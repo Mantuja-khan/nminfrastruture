@@ -26,10 +26,10 @@ export function ImageModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header bar */}
-        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/40">
+        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#0D1C42]">
           <div>
-            <span className="inline-flex items-center gap-1.5 text-xs font-display font-bold text-accent uppercase tracking-wider mb-1">
-              <ImageIcon className="w-3.5 h-3.5" /> Photo Showcase
+            <span className="inline-flex items-center gap-1.5 text-xs font-display font-bold text-[#FCF1D0] uppercase tracking-wider mb-1">
+              <ImageIcon className="w-3.5 h-3.5 text-[#FCF1D0]" /> Photo Showcase
             </span>
             <h3 className="font-display font-extrabold text-white text-base sm:text-lg">
               {project.title}
@@ -38,7 +38,7 @@ export function ImageModal({ project, onClose }) {
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="p-2 rounded-full bg-white/10 hover:bg-primary hover:text-black text-white transition-all duration-200"
+            className="p-2 rounded-full bg-white/10 hover:bg-[#22396F] text-white hover:text-[#FCF1D0] transition-all duration-200"
           >
             <X className="w-5 h-5" />
           </button>

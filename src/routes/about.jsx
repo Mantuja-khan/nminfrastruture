@@ -1,34 +1,49 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect } from "react";
-import { Award, Users, Target, Heart, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Award, Users, Target, Heart, ArrowRight, HardHat, Camera } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { useReveal } from "@/hooks/use-reveal";
 import teamWorkers from "@/assets/team-workers.jpg";
 import teamEngineers from "@/assets/team-engineers.jpg";
+import { PHOTO_PROJECTS } from "@/lib/projects-data";
+import { ImageModal } from "@/components/image-modal";
+
 const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About NM Infrastructure \u2014 Founded 2024 by Arshad Khan" },
-      { name: "description", content: "NM Infrastructure \u2014 a new-generation construction firm founded in 2024 by Arshad Khan, delivering civil, industrial and interior projects." },
+      { title: "About NM Infrastructure — Founded 2024 by Arshad Khan" },
+      { name: "description", content: "NM Infrastructure — a new-generation construction firm founded in 2024 by Arshad Khan, delivering civil, industrial and interior projects." },
       { property: "og:title", content: "About NM Infrastructure" },
-      { property: "og:description", content: "Founded 2024 by Arshad Khan \u2014 trusted construction and architecture across residential, commercial and industrial projects." }
+      { property: "og:description", content: "Founded 2024 by Arshad Khan — trusted construction and architecture across residential, commercial and industrial projects." }
     ]
   }),
   component: AboutPage
 });
+
 function AboutPage() {
   useReveal();
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const siteTeamPhotos = PHOTO_PROJECTS.filter((p) => p.category === "dharuhera-team");
+
   const values = [
     { icon: Award, title: "Quality First", desc: "Uncompromising standards on every material, weld and finish." },
     { icon: Users, title: "People Focused", desc: "Skilled crews treated well produce beautiful, lasting work." },
     { icon: Target, title: "On Time, On Budget", desc: "Transparent scheduling and pricing from day one." },
     { icon: Heart, title: "Built to Last", desc: "We build the way we'd build for our own families." }
   ];
-  return <>
-      <PageHero title="About Our Firm" subtitle="Founded in 2024 by Arshad Khan, NM Infrastructure is a next-generation construction firm delivering honest craftsmanship across India." breadcrumbs={[{ label: "Home", to: "/" }, { label: "About" }]} />
+
+  return (
+    <>
+      <PageHero
+        title="About Our Firm"
+        subtitle="Founded in 2024 by Arshad Khan, NM Infrastructure is a next-generation construction firm delivering honest craftsmanship across India."
+        breadcrumbs={[{ label: "Home", to: "/" }, { label: "About" }]}
+      />
 
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
@@ -52,16 +67,71 @@ function AboutPage() {
               From day one we've focused on nine core disciplines — civil, industrial, fabrication, electrical, plumbing, painting, interiors, labour supply and machine shifting — so clients get one accountable builder from foundation to final finish.
             </p>
             <div className="grid grid-cols-3 gap-6 border-t border-border pt-8">
-              {[["40+", "Projects"], ["2024", "Founded"], ["9", "Services"]].map(([n, l]) => <div key={l}>
+              {[["40+", "Projects"], ["2024", "Founded"], ["9", "Services"]].map(([n, l]) => (
+                <div key={l}>
                   <div className="font-display font-black text-4xl">{n}</div>
                   <div className="text-sm uppercase tracking-widest text-muted-foreground mt-1">{l}</div>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-muted">
+      {/* ON-SITE TEAM & WORKFORCE SHOWCASE */}
+      <section className="py-24 bg-muted border-t border-border">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16 reveal">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="w-10 h-[2px] bg-primary" />
+              <span className="text-primary font-display font-bold tracking-[0.3em] uppercase text-sm flex items-center gap-2">
+                <HardHat className="w-4 h-4 text-primary" /> Our Force On The Ground
+              </span>
+              <span className="w-10 h-[2px] bg-primary" />
+            </div>
+            <h2 className="font-display font-black text-4xl md:text-5xl">
+              Site Team <span className="text-primary">& Engineers</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+              Real documentation of our dedicated engineers, supervisors, and skilled tradesmen working on-ground at landmark sites like Dharuhera Reliance.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {siteTeamPhotos.map((item, i) => (
+              <div
+                key={item.id}
+                onClick={() => setSelectedPhoto(item)}
+                className="group relative overflow-hidden rounded-xl border border-border bg-black aspect-[4/3] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 reveal"
+                data-delay={(i % 3) * 100}
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/70 transition-all" />
+                <div className="absolute bottom-0 inset-x-0 p-4 flex items-center justify-between text-white">
+                  <div>
+                    <span className="text-xs text-primary font-display font-bold uppercase tracking-wider block">
+                      Site Execution
+                    </span>
+                    <h4 className="font-display font-bold text-sm sm:text-base text-white">
+                      {item.title}
+                    </h4>
+                  </div>
+                  <span className="w-8 h-8 rounded-full bg-primary/90 text-primary-foreground flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <Camera className="w-4 h-4" />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -72,13 +142,15 @@ function AboutPage() {
             <h2 className="font-display font-black text-4xl md:text-5xl">What we <span className="text-primary">stand for</span></h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((v, i) => <div key={v.title} className="bg-white p-8 border border-border hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 reveal" data-delay={i * 100}>
+            {values.map((v, i) => (
+              <div key={v.title} className="bg-white p-8 border border-border hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 reveal" data-delay={i * 100}>
                 <div className="w-14 h-14 bg-primary flex items-center justify-center mb-5">
                   <v.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
                 <h3 className="font-display font-extrabold text-xl mb-2">{v.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -91,8 +163,17 @@ function AboutPage() {
           </Link>
         </div>
       </section>
-    </>;
+
+      {/* Lightbox for Team Photos */}
+      {selectedPhoto && (
+        <ImageModal
+          project={selectedPhoto}
+          onClose={() => setSelectedPhoto(null)}
+        />
+      )}
+    </>
+  );
 }
-export {
-  Route
-};
+
+export { Route };
+

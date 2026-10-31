@@ -102,14 +102,14 @@ function AboutPage() {
               <div
                 key={item.id}
                 onClick={() => setSelectedPhoto(item)}
-                className="group relative overflow-hidden rounded-xl border border-border bg-black aspect-[4/3] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 reveal"
+                className="group relative overflow-hidden rounded-none border border-border bg-black aspect-[4/3] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 reveal"
                 data-delay={(i % 3) * 100}
               >
                 <img
                   src={item.img}
                   alt={item.title}
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100 rounded-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/70 transition-all" />
                 <div className="absolute bottom-0 inset-x-0 p-4 flex items-center justify-between text-white">
@@ -121,7 +121,7 @@ function AboutPage() {
                       {item.title}
                     </h4>
                   </div>
-                  <span className="w-8 h-8 rounded-full bg-primary/90 text-primary-foreground flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                  <span className="w-8 h-8 rounded-none bg-primary/90 text-primary-foreground flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                     <Camera className="w-4 h-4" />
                   </span>
                 </div>

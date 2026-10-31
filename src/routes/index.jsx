@@ -3,8 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowRight, HardHat, ImageIcon } from "lucide-react";
 import heroImg from "@/assets/hero-construction.jpg";
-import teamWorkers from "@/assets/team-workers.jpg";
-import teamEngineers from "@/assets/team-engineers.jpg";
+import heroSunsetCrane from "@/assets/hero-sunset-crane.jpg";
+import siteConstructionWork from "@/assets/Dharuhera_reliance_site_work.jpeg";
 import { useReveal } from "@/hooks/use-reveal";
 import { SERVICES } from "@/lib/services-data";
 import { PHOTO_PROJECTS, PROJECTS } from "@/lib/projects-data";
@@ -27,8 +27,13 @@ function Index() {
   }, []);
 
   const services = SERVICES.slice(0, 6);
-  // Show only 6 photo projects on Home page
-  const homePhotoProjects = PHOTO_PROJECTS.slice(0, 6);
+  // Show ONLY construction site images on Home page (Civil, Structural Steel, Foundation, Plant works)
+  const homePhotoProjects = PHOTO_PROJECTS.filter(
+    (p) =>
+      p.category !== "dharuhera-team" &&
+      !p.title.toLowerCase().includes("team") &&
+      p.category !== "dharuhera-electric"
+  ).slice(0, 6);
 
   return (
     <div className="text-foreground font-sans overflow-x-hidden">
@@ -182,25 +187,25 @@ function Index() {
       <section id="about" className="relative py-24 bg-muted overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative reveal-left">
-            <div className="absolute -top-6 -left-6 w-40 h-40 bg-primary/20 rounded-3xl z-0" />
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-4 border-primary rounded-2xl z-0" />
+            <div className="absolute -top-6 -left-6 w-40 h-40 bg-primary/20 rounded-none z-0" />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-4 border-primary rounded-none z-0" />
             <img
-              src={teamWorkers}
-              alt="Team reviewing plans"
+              src={heroSunsetCrane}
+              alt="Heavy structural civil construction site"
               width={1200}
               height={1400}
               loading="lazy"
-              className="relative z-10 w-full h-[520px] object-cover rounded-3xl shadow-lg"
+              className="relative z-10 w-full h-[520px] object-cover rounded-none shadow-lg"
             />
             <img
-              src={teamEngineers}
-              alt="Engineers on site"
+              src={siteConstructionWork}
+              alt="Civil foundation and reinforcement engineering"
               width={1000}
               height={800}
               loading="lazy"
-              className="absolute -bottom-10 -right-6 w-64 h-64 object-cover z-20 border-8 border-muted rounded-3xl hidden md:block shadow-xl"
+              className="absolute -bottom-10 -right-6 w-64 h-64 object-cover z-20 border-8 border-muted rounded-none hidden md:block shadow-xl"
             />
-            <div className="absolute top-6 right-6 z-30 bg-primary text-primary-foreground px-5 py-4 font-display rounded-2xl shadow-xl">
+            <div className="absolute top-6 right-6 z-30 bg-primary text-primary-foreground px-5 py-4 font-display rounded-none shadow-xl">
               <div className="text-4xl font-black leading-none">2024</div>
               <div className="text-xs uppercase tracking-widest mt-1">Founded</div>
             </div>

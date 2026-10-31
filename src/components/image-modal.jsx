@@ -22,7 +22,7 @@ export function ImageModal({ project, onClose }) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-[var(--dark)] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-white/20 my-auto"
+        className="relative w-full max-w-4xl bg-[var(--dark)] rounded-none overflow-hidden shadow-2xl flex flex-col border border-white/20 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header bar */}

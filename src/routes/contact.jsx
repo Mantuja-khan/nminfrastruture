@@ -93,16 +93,27 @@ function ContactPage() {
             )}
           </div>
 
-          <div className="reveal-right relative h-[480px] rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
+          <div className="reveal-right relative h-[500px] rounded-none overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
             <iframe
-              title="Location"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=76.80%2C27.90%2C77.00%2C28.10&layer=mapnik"
-              className="w-full h-full grayscale contrast-125"
+              title="NM INFRASTRUCTURE Location Map"
+              src="https://maps.google.com/maps?q=28.1821929,76.8813617+(NM%20INFRASTRUCTURE)&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              className="w-full h-full border-0"
+              allowFullScreen=""
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="absolute bottom-4 right-4 left-4 sm:left-auto bg-slate-900 text-white p-5 rounded-2xl shadow-xl max-w-sm border border-slate-700">
+            <div className="absolute bottom-4 right-4 left-4 sm:left-auto bg-slate-900/95 backdrop-blur-md text-white p-5 rounded-none shadow-xl max-w-sm border border-slate-700">
               <div className="text-[11px] uppercase tracking-widest text-primary font-bold mb-1">Our Location</div>
-              <div className="font-display font-bold text-sm leading-snug">Tapukara / Gadpur, Khairthal Tijara, Rajasthan</div>
+              <div className="font-display font-bold text-sm leading-snug mb-1">NM INFRASTRUCTURE</div>
+              <div className="text-xs text-slate-300 leading-relaxed mb-3">Shop No. 04, Yunus Colony, Teh. Tapukara, Near Ashirwad Company, Gadpur, Khairthal Tijara, Rajasthan 301707</div>
+              <a
+                href="https://www.google.com/maps/place/NM+INFRASTRUCTURE/@28.1821976,76.8787868,676m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390d37a32b6a81d1:0x4b2586e51cb1b874!8m2!3d28.1821929!4d76.8813617!16s%2Fg%2F11z_xlv_wb?entry=ttu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-sans font-bold uppercase tracking-wider text-primary hover:text-white transition-colors"
+              >
+                <MapPin className="w-3.5 h-3.5" /> Open in Google Maps →
+              </a>
             </div>
           </div>
         </div>

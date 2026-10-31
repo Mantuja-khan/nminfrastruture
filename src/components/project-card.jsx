@@ -7,7 +7,7 @@ export function ProjectCard({ project, onOpenModal, delay = 0 }) {
 
   return (
     <div
-      className="group relative overflow-hidden bg-slate-900 rounded-2xl transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl flex flex-col justify-between aspect-square reveal"
+      className="group relative overflow-hidden bg-slate-900 rounded-none transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl flex flex-col justify-between aspect-square reveal"
       data-delay={delay}
       onClick={() => onOpenModal && onOpenModal(project)}
     >
@@ -23,14 +23,14 @@ export function ProjectCard({ project, onOpenModal, delay = 0 }) {
             loop
             playsInline
             preload="metadata"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100 rounded-none"
           />
         ) : (
           <img
             src={project.img}
             alt={project.title}
             loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100 rounded-none"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10 group-hover:from-black/80 transition-opacity duration-300" />
@@ -38,7 +38,7 @@ export function ProjectCard({ project, onOpenModal, delay = 0 }) {
 
       {/* Top Badge Bar */}
       <div className="relative z-10 p-3 sm:p-4 flex items-start justify-between">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[11px] font-sans font-bold text-white border border-white/15 uppercase tracking-wider shadow-sm">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md rounded-none text-[11px] font-sans font-bold text-white border border-white/15 uppercase tracking-wider shadow-sm">
           {isVideo ? (
             <Video className="w-3.5 h-3.5 text-primary" />
           ) : (
@@ -47,8 +47,8 @@ export function ProjectCard({ project, onOpenModal, delay = 0 }) {
           <span>{isVideo ? "Live Video" : "Photo"}</span>
         </span>
 
-        {/* Action Icon Pill */}
-        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-red-700 transition-all duration-300">
+        {/* Action Icon */}
+        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-none bg-primary text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-red-700 transition-all duration-300">
           {isVideo ? (
             <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current ml-0.5" />
           ) : (

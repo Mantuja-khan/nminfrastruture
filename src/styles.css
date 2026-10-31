@@ -241,3 +241,43 @@
   -webkit-background-clip: text;
   color: transparent;
 }
+
+@keyframes whatsapp-blink {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7), 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0), 0 14px 28px -4px rgba(37, 211, 102, 0.6);
+    filter: brightness(1.15);
+  }
+}
+
+@keyframes call-blink {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(230, 46, 46, 0.7), 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 16px rgba(230, 46, 46, 0), 0 14px 28px -4px rgba(230, 46, 46, 0.6);
+    filter: brightness(1.15);
+  }
+}
+
+@utility animate-whatsapp-blink {
+  animation: whatsapp-blink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@utility animate-call-blink {
+  animation: call-blink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Enforce square design for all images and image containers (no border curve style) */
+img {
+  border-radius: 0px !important;
+}
+

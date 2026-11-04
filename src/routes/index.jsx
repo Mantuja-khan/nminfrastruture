@@ -2,12 +2,20 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowRight, HardHat, ImageIcon } from "lucide-react";
-import heroImg from "@/assets/hero-construction.jpg";
 import heroSunsetCrane from "@/assets/hero-sunset-crane.jpg";
 import siteConstructionWork from "@/assets/Dharuhera_reliance_site_work.jpeg";
+import {
+  img5,
+  img14,
+  img15,
+  img16,
+  img17,
+  img30,
+  img31
+} from "@/lib/unknown-images";
 import { useReveal } from "@/hooks/use-reveal";
 import { SERVICES } from "@/lib/services-data";
-import { PHOTO_PROJECTS, PROJECTS } from "@/lib/projects-data";
+import { PROJECTS } from "@/lib/projects-data";
 import { ProjectCard } from "@/components/project-card";
 import { ImageModal } from "@/components/image-modal";
 
@@ -15,8 +23,16 @@ const Route = createFileRoute("/")({
   component: Index
 });
 
+const HERO_IMAGES = [
+  { id: "hero-img-5", img: img5 },
+  { id: "hero-img-30", img: img30 },
+  { id: "hero-img-14", img: img14 },
+  { id: "hero-img-31", img: img31 }
+];
+
 function Index() {
   const [scrollY, setScrollY] = useState(0);
+  const [heroIndex, setHeroIndex] = useState(0);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   useReveal();
 
@@ -26,42 +42,81 @@ function Index() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Smooth automatic transition between hero images with scale animation
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   const services = SERVICES.slice(0, 6);
-  // Show ONLY construction site images on Home page (Civil, Structural Steel, Foundation, Plant works)
-  const homePhotoProjects = PHOTO_PROJECTS.filter(
-    (p) =>
-      p.category !== "dharuhera-team" &&
-      !p.title.toLowerCase().includes("team") &&
-      p.category !== "dharuhera-electric"
-  ).slice(0, 6);
+
+  // Recent projects on Home page (image14, image15, image16, image17, image5, image30 without names)
+  const homePhotoProjects = [
+    { id: "home-img-14", img: img14, title: "", type: "photo" },
+    { id: "home-img-15", img: img15, title: "", type: "photo" },
+    { id: "home-img-16", img: img16, title: "", type: "photo" },
+    { id: "home-img-17", img: img17, title: "", type: "photo" },
+    { id: "home-img-5", img: img5, title: "", type: "photo" },
+    { id: "home-img-30", img: img30, title: "", type: "photo" }
+  ];
 
   return (
     <div className="text-foreground font-sans overflow-x-hidden">
-      {/* HERO with parallax and High-Definition Image (No Video) */}
+      {/* HERO with smooth transition and scale animation */}
       <section id="home" className="relative min-h-[640px] h-[100svh] sm:min-h-[720px] overflow-hidden bg-[var(--dark)]">
         <div
-          className="absolute inset-0 will-change-transform cursor-pointer"
+          className="absolute inset-0 will-change-transform"
           style={{
-            transform: `translate3d(0, ${scrollY * 0.4}px, 0) scale(${1 + scrollY * 3e-4})`
+            transform: `translate3d(0, ${scrollY * 0.4}px, 0)`
           }}
-          onClick={() =>
-            setSelectedPhoto({
-              id: "hero-photo",
-              title: "NM Infrastructure — Landmark Construction Site",
-              img: heroImg,
-              type: "photo"
-            })
-          }
-          title="Click to view full photo"
         >
-          <img
-            src={heroImg}
-            alt="NM Infrastructure Landmark Construction"
-            className="w-full h-full object-cover"
-          />
+          {HERO_IMAGES.map((item, index) => {
+            const isActive = index === heroIndex;
+            return (
+              <div
+                key={item.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out cursor-pointer ${
+                  isActive ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                }`}
+                onClick={() =>
+                  setSelectedPhoto({
+                    id: item.id,
+                    title: "",
+                    img: item.img,
+                    type: "photo"
+                  })
+                }
+                title="Click to view full photo"
+              >
+                <img
+                  src={item.img}
+                  alt="NM Infrastructure Landmark Construction"
+                  className={`w-full h-full object-cover transition-transform duration-[5500ms] ease-out will-change-transform ${
+                    isActive ? "scale-110" : "scale-100"
+                  }`}
+                />
+              </div>
+            );
+          })}
           {/* Light translucent gradient so the background image is clearly visible */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-black/15" />
-          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/25 pointer-events-none" />
+          <div className="absolute inset-0 bg-black/15 pointer-events-none" />
+        </div>
+
+        {/* Hero Slider Dots */}
+        <div className="absolute bottom-8 right-6 sm:right-10 z-20 flex items-center gap-2">
+          {HERO_IMAGES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setHeroIndex(idx)}
+              aria-label={`Slide ${idx + 1}`}
+              className={`h-2 transition-all duration-300 rounded-full ${
+                idx === heroIndex ? "w-8 bg-primary" : "w-2 bg-white/40 hover:bg-white/80"
+              }`}
+            />
+          ))}
         </div>
         <div
           className="relative z-20 max-w-7xl mx-auto h-full flex items-center px-4 sm:px-6"

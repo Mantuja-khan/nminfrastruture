@@ -28,7 +28,7 @@ export function ProjectCard({ project, onOpenModal, delay = 0 }) {
         ) : (
           <img
             src={project.img}
-            alt={project.title}
+            alt={project.title || "NM Infrastructure Construction Site"}
             loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100 rounded-none"
           />
@@ -58,16 +58,18 @@ export function ProjectCard({ project, onOpenModal, delay = 0 }) {
       </div>
 
       {/* Bottom Content Area */}
-      <div className="relative z-10 p-3.5 sm:p-4 pt-0">
-        {project.categoryName && (
-          <span className="text-[11px] text-red-400 font-sans font-bold uppercase tracking-wider block mb-1">
-            {project.categoryName}
-          </span>
-        )}
-        <h3 className="font-display font-bold text-white text-sm sm:text-base leading-snug group-hover:text-red-200 transition-colors line-clamp-2">
-          {project.title}
-        </h3>
-      </div>
+      {project.title ? (
+        <div className="relative z-10 p-3.5 sm:p-4 pt-0">
+          {project.categoryName && (
+            <span className="text-[11px] text-red-400 font-sans font-bold uppercase tracking-wider block mb-1">
+              {project.categoryName}
+            </span>
+          )}
+          <h3 className="font-display font-bold text-white text-sm sm:text-base leading-snug group-hover:text-red-200 transition-colors line-clamp-2">
+            {project.title}
+          </h3>
+        </div>
+      ) : null}
     </div>
   );
 }

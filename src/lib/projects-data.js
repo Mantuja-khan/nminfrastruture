@@ -85,8 +85,12 @@ import siteTeamDharuhera4 from "@/assets/site_team_dharuhera_reliance4.jpeg";
 import siteTeamDharuhera5 from "@/assets/site_team_dharuhera_reliance5.jpeg";
 import siteTeamDharuhera6 from "@/assets/site_team_dharuhera_reliance6.jpeg";
 
+// Unknown site images from assets/unknown (no names)
+import { UNKNOWN_PROJECT_PHOTOS } from "@/lib/unknown-images";
+
 export const PROJECT_CATEGORIES = [
   { id: "all", name: "All Projects" },
+  { id: "site-gallery", name: "Site Work Gallery" },
   { id: "dharuhera-site-work", name: "Dharuhera Reliance Site Work" },
   { id: "dharuhera-electric", name: "Dharuhera Reliance Site Electric Work" },
   { id: "dharuhera-fabrication", name: "Dharuhera Reliance Site Fabrication Work" },
@@ -295,6 +299,9 @@ export const VIDEO_PROJECTS = [
 ];
 
 export const PHOTO_PROJECTS = [
+  // 0. Site Work Gallery Photos (assets/unknown - no names)
+  ...UNKNOWN_PROJECT_PHOTOS,
+
   // 1. Dharuhera Reliance Site Work
   {
     id: "dharuhera-reliance-site-work",

@@ -31,9 +31,11 @@ export function ImageModal({ project, onClose }) {
             <span className="inline-flex items-center gap-1.5 text-xs font-display font-bold text-[#FCF1D0] uppercase tracking-wider mb-1">
               <ImageIcon className="w-3.5 h-3.5 text-[#FCF1D0]" /> Photo Showcase
             </span>
-            <h3 className="font-display font-extrabold text-white text-base sm:text-lg">
-              {project.title}
-            </h3>
+            {project.title ? (
+              <h3 className="font-display font-extrabold text-white text-base sm:text-lg">
+                {project.title}
+              </h3>
+            ) : null}
           </div>
           <button
             onClick={onClose}
